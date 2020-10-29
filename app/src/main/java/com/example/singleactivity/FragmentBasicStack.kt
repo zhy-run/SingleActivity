@@ -3,7 +3,6 @@ package com.example.singleactivity
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
-import java.sql.BatchUpdateException
 import java.util.*
 
 
@@ -17,26 +16,29 @@ open class FragmentBasicStack(private val activity: SingleActivity):IFragmentSta
     }
 
     /** 入栈 */
-    override fun <FragmentContainer:Fragment> push(fragmentClass:Class<FragmentContainer>,bundle:Bundle?) {
+    override fun <FragmentContainer : Fragment> push(
+        fragmentClass: Class<FragmentContainer>,
+        bundle: (Bundle.() -> Unit)?
+    ) {
         Log.d(TAG, "myf:superpush")
         val fragment = fragmentClass.newInstance()
-        fragment.arguments = bundle
+        bundle?.let { fragment.arguments = Bundle().apply(it) }
         fragmentBackStack.addFirst(fragment)
         replaceFragment(fragment)
     }
 
     /** 返回栈顶元素 */
-    override fun peek():Fragment {
-        return fragmentBackStack.first
+    override fun peek():Fragment? {
+        return fragmentBackStack.peekFirst()
     }
 
     /** 移出栈顶元素 */
-    override fun pop():Fragment {
+    override fun poll():Fragment? {
         if (stackSize() == 1) {
             activity.finish()
         }
-        val result = fragmentBackStack.pop()
-        replaceFragment(fragmentBackStack.peek())
+        val result = fragmentBackStack.pollFirst()
+        fragmentBackStack.peekFirst()?.let { replaceFragment(it) }
         return result
     }
 
@@ -48,6 +50,11 @@ open class FragmentBasicStack(private val activity: SingleActivity):IFragmentSta
     /** 返回栈的大小 */
     override fun stackSize():Int{
         return fragmentBackStack.count()
+    }
+
+    /** 清空栈 */
+    override fun clear() {
+        fragmentBackStack.clear()
     }
 
     fun replaceFragment(fragment: Fragment){

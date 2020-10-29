@@ -16,26 +16,26 @@ open class SynFragmentBasicStack(private val activity: SingleActivity):IFragment
     }
 
     /** 入栈 */
-    override fun <FragmentContainer:Fragment> push(fragmentClass:Class<FragmentContainer>, bundle: Bundle?) {
+    override fun <FragmentContainer:Fragment> push(fragmentClass: Class<FragmentContainer>, bundle: (Bundle.() -> Unit)?) {
         Log.d(TAG, "myf:superpush")
         val fragment = fragmentClass.newInstance()
-        fragment.arguments = bundle
+        bundle?.let { fragment.arguments = Bundle().apply(it) }
         fragmentBackStack.addLast(fragment)
         replaceFragment(fragment)
     }
 
     /** 返回栈顶元素 */
-    override fun peek():Fragment {
+    override fun peek():Fragment? {
         return fragmentBackStack.peekLast()
     }
 
     /** 移出栈顶元素 */
-    override fun pop():Fragment {
+    override fun poll():Fragment? {
         if (stackSize() == 1) {
             activity.finish()
         }
         val result = fragmentBackStack.pollLast()
-        replaceFragment(fragmentBackStack.peekLast())
+        fragmentBackStack.peekLast()?.let { replaceFragment(it) }
         Log.d(TAG, "myf:${stackSize()}")
         return result
     }
@@ -50,6 +50,13 @@ open class SynFragmentBasicStack(private val activity: SingleActivity):IFragment
         return fragmentBackStack.size
     }
 
+    /** 清空栈 */
+    override fun clear() {
+        if(!empty()){
+            fragmentBackStack.clear()
+        }
+    }
+
     fun replaceFragment(fragment: Fragment){
         val transaction = fragmentManager.beginTransaction()
         transaction.replace(mainFragmentID,fragment)
@@ -58,14 +65,11 @@ open class SynFragmentBasicStack(private val activity: SingleActivity):IFragment
 
     fun <FragmentContainer : Fragment>containsClass(fragmentClass: Class<FragmentContainer>):Boolean{
         if(fragmentBackStack.isEmpty()) return false
-        Log.d(TAG, "myf:$fragmentClass")
-        var iterator = fragmentBackStack.iterator()
+        val iterator = fragmentBackStack.iterator()
         while (iterator.hasNext()){
-            var temp = iterator.next()
-            if(temp::class.java == fragmentClass){
+            if(iterator.next()::class.java == fragmentClass){
                 return true
             }
-            Log.d(TAG, "myf:11${temp::class.java}")
         }
         return false
     }

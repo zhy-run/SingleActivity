@@ -3,61 +3,43 @@
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_height="match_parent"
-    android:id="@+id/fragment2">
+    android:id="@+id/fragment4">
 
     <TextView
-        android:id="@+id/show1EditText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/editText"
-        android:text=""/>
-
-    <EditText
-        android:id="@+id/editText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/text2"
-        android:hint="请输入"/>
-
-    <TextView
-        android:id="@+id/text2"
+        android:id="@+id/text4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:text="this is Fragment2"/>
+        android:text="this is Fragment4"/>
 
     <Button
-        android:id="@+id/to21"
+        android:id="@+id/to41"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="jump to Fragment1"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/text2" />
+        app:layout_constraintTop_toBottomOf="@id/text4" />
 
     <Button
-        android:id="@+id/to22"
+        android:id="@+id/to42"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="jump to Fragment2"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/to21" />
+        app:layout_constraintTop_toBottomOf="@id/to41" />
 
     <Button
-        android:id="@+id/to23"
+        android:id="@+id/to43"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="jump to Fragment3"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/to22" />
+        app:layout_constraintTop_toBottomOf="@id/to42" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -9,10 +9,5 @@ fun <FragmentContainer:Fragment>Fragment.show(
         fragmentClazz: Class<FragmentContainer>,
         args: (Bundle.() -> Unit)? = null
 ) {
-    if(args!=null){
-        val bundle = Bundle().apply(args)
-        SingleActivity.fragmentStack.push(fragmentClazz,bundle)
-    }else{
-        SingleActivity.fragmentStack.push(fragmentClazz,null)
-    }
+    (activity as SingleActivity).fragmentStackList[(activity as SingleActivity).stackPosition].push(fragmentClazz,args)
 }

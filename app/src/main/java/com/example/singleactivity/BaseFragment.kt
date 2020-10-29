@@ -16,13 +16,20 @@ open class BaseFragment:Fragment() {
         super.onAttach(context)
     }
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return super.onCreateView(inflater, container, savedInstanceState)
         Log.d(TAG, "onCreateView: ")
+        return super.onCreateView(inflater, container, savedInstanceState)
     }
+
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         Log.d(TAG, "onViewCreated: ")
         super.onViewCreated(view, savedInstanceState)
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        Log.d(TAG, "onCreate: ")
+        super.onCreate(savedInstanceState)
     }
 
     override fun onResume() {

@@ -12,14 +12,14 @@ class SynSingleTaskFragmentStack(activity: SingleActivity): SynFragmentBasicStac
     }
 
     @SuppressLint("LongLogTag")
-    override fun <FragmentContainer : Fragment> push(fragmentClass: Class<FragmentContainer>,bundle: Bundle?) {
+    override fun <FragmentContainer : Fragment> push(fragmentClass: Class<FragmentContainer>, bundle: (Bundle.() -> Unit)?) {
         if(containsClass(fragmentClass)){
             Log.d(TAG, "myf:true")
             while (fragmentBackStack.peekLast()::class.java != fragmentClass){
                 fragmentBackStack.pollLast()
             }
-            fragmentBackStack.peekLast().arguments = bundle
-            replaceFragment(fragmentBackStack.peekLast())
+            bundle?.let { fragmentBackStack.peekLast()?.arguments = Bundle().apply(it) }
+            fragmentBackStack.peekLast()?.let { replaceFragment(it) }
         }else{
             Log.d(TAG, "myf:false")
             super.push(fragmentClass,bundle)

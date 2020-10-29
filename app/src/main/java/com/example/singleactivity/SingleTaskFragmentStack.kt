@@ -10,14 +10,14 @@ class SingleTaskFragmentStack(activity: SingleActivity): FragmentBasicStack(acti
         private const val TAG = "SingleTaskFragmentStack"
     }
 
-    override fun <FragmentContainer : Fragment> push(fragmentClass: Class<FragmentContainer>,bundle: Bundle?) {
+    override fun <FragmentContainer : Fragment> push(fragmentClass: Class<FragmentContainer>, bundle: (Bundle.() -> Unit)?) {
         if(containsClass(fragmentClass)){
             Log.d(TAG, "myf:true")
             var iterator = fragmentBackStack.iterator()
             while (iterator.hasNext()){
                 var temp = iterator.next()
                 if(temp::class.java == fragmentClass){
-                    temp.arguments = bundle
+                    bundle?.let { temp.arguments = Bundle().apply(it) }
                     replaceFragment(temp)
                     break
                 }else{

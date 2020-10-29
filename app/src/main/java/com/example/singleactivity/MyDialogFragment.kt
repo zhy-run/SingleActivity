@@ -9,8 +9,10 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.DialogFragment
+import com.example.singleactivity.Fragment2
+import com.example.singleactivity.Fragment3
 import com.example.singleactivity.R
-import com.example.singleactivity.SingleActivity
+import com.example.singleactivity.ktx.show
 
 class MyDialogFragment: DialogFragment() {
     private val TAG = "MyDialogFragment a85l"
@@ -27,9 +29,11 @@ class MyDialogFragment: DialogFragment() {
                 .setIcon(R.mipmap.ic_launcher)
                 .setPositiveButton("车子"){ dialogInterface: DialogInterface, i: Int ->
                     Toast.makeText(context,"你选了车子",Toast.LENGTH_SHORT).show()
+                    show(Fragment2::class.java,null)
                 }
                 .setNegativeButton("房子"){ dialogInterface: DialogInterface, i: Int ->
                     Toast.makeText(context,"你选了房子",Toast.LENGTH_SHORT).show()
+                    show(Fragment3::class.java,null)
                 }
                 .create()
     }

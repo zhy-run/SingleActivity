@@ -1,37 +1,47 @@
 package com.example.singleactivity
 
-import android.content.Context
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.util.Log
+import androidx.annotation.IdRes
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import com.example.singleactivity.ktx.initFragmentStack
+import com.example.singleactivity.tab.NavTabContainerView
+import kotlinx.android.synthetic.main.activity_main.*
 
-class SingleActivity: AppCompatActivity() {
-    val mainFragmentID = R.id.mainFragment
+class SingleActivity: AppCompatActivity(), NavTabContainerView.OnNavTabContainerViewListener {
+
+    @IdRes
+    internal val mainFragmentID = R.id.mainFragment
+
+    internal val fragmentStackList = listOf<IFragmentStack>(
+        SynSingleTaskFragmentStack(this),
+        SynSingleTaskFragmentStack(this),
+        SynSingleTaskFragmentStack(this),
+        SynSingleTaskFragmentStack(this))
+
+    internal var stackPosition:Int = 0
+
+    private val initFragmentList = listOf<Class<out Fragment>>(Fragment1::class.java,Fragment2::class.java,Fragment3::class.java,Fragment4::class.java)
 
     companion object{
-        @JvmStatic
-//        lateinit var fragmentStack:FragmentBasicStack
-        lateinit var fragmentStack:SynFragmentBasicStack
-//        lateinit var fragmentStack:synStack
-
         private const val TAG = "SingleActivity a85l"
-
-        @JvmStatic
-        @Volatile
-        lateinit var appContext: Context
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         Log.d(TAG, "onCreate: ")
+
+        nav_tab_view_container.setOnNavTabContainerViewListener(this)
+        nav_tab_view_container.renderForClick(0)
+
 //        fragmentStack = SingleTaskFragmentStack(this)
-        fragmentStack = SynSingleTaskFragmentStack(this)
-//        fragmentStack = synSingle(this)
-        Log.d(TAG, "myf:before push ")
-        fragmentStack.push(Fragment1::class.java,null)
-        supportFragmentManager
+    }
+
+    override fun onNavItem(position: Int) {
+        stackPosition = position
+        initFragmentStack(initFragmentList[position],null)
     }
 
     override fun onStart() {
@@ -65,7 +75,7 @@ class SingleActivity: AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        fragmentStack.pop()
+        fragmentStackList[stackPosition].poll()
     }
 
     override fun onSaveInstanceState(outState: Bundle) {

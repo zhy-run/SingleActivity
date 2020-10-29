@@ -4,13 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.fragment.app.Fragment
 import com.example.singleactivity.ktx.show
-import kotlinx.android.synthetic.main.fragment3.*
+import kotlinx.android.synthetic.main.fragment4.*
 
-
-class Fragment3: BaseFragment() {
+class Fragment4: BaseFragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -18,14 +15,13 @@ class Fragment3: BaseFragment() {
         savedInstanceState: Bundle?
     ): View? {
         //        val bundle = arguments
-        super.onCreateView(inflater, container, savedInstanceState)
-        return inflater.inflate(R.layout.fragment3, container, false)
+        return inflater.inflate(R.layout.fragment4, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        to31.setOnClickListener {  show(Fragment1::class.java) }
-        to32.setOnClickListener {  show(Fragment2::class.java) }
-        to33.setOnClickListener {  show(Fragment3::class.java) }
+        to41.setOnClickListener {  show(Fragment1::class.java) }
+        to42.setOnClickListener {  show(Fragment2::class.java) }
+        to43.setOnClickListener {  show(Fragment3::class.java) }
     }
 }
