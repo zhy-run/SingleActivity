@@ -1,11 +1,10 @@
-package com.example.singleactivity
+package com.example.singleactivity.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.fragment.app.Fragment
+import com.example.singleactivity.R
 import com.example.singleactivity.ktx.show
 import kotlinx.android.synthetic.main.fragment3.*
 

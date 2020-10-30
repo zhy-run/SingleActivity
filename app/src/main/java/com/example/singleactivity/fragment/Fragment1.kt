@@ -1,22 +1,16 @@
-package com.example.singleactivity
+package com.example.singleactivity.fragment
 
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.fragment.app.Fragment
-import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModel
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.singleactivity.*
+import com.example.singleactivity.Adapter.MyAdapter
 import com.example.singleactivity.ktx.show
 import kotlinx.android.synthetic.main.fragment1.*
-import kotlinx.android.synthetic.main.fragment2.*
 
 
 class Fragment1: BaseFragment() {
@@ -40,7 +34,7 @@ class Fragment1: BaseFragment() {
         recycler.layoutManager = LinearLayoutManager(this.context)
         recycler.adapter = MyAdapter()
         Toast.makeText(context, "${this.arguments?.getString("title")}", Toast.LENGTH_SHORT).show()
-        Fragment2.fragment2ViewModel.subscribe(this){data: Fragment2.Fragment2Data ->
+        Fragment2.fragment2ViewModel.subscribe(this){ data: Fragment2.Fragment2Data ->
             onTextChanged(data)
         }
     }

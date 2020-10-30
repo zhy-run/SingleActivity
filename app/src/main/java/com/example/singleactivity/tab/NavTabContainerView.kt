@@ -55,14 +55,14 @@ class NavTabContainerView @JvmOverloads constructor(
                 renderForClick(navItemPosition)
             }
             navItemView.setState(navItem)
-            when (index) {
-                0 -> {
-                    navItemView.checked()
-                }
+//            when (index) {
+//                0 -> {
+//                    navItemView.checked()
+//                }
 //                2 -> {
 //                    navItemView.visibility = View.INVISIBLE
 //                }
-            }
+//            }
             navItemViewContainer.addView(navItemView, navItemViewLayoutParams)
         }
 

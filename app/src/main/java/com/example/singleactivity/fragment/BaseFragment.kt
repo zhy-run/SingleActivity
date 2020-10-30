@@ -1,4 +1,4 @@
-package com.example.singleactivity
+package com.example.singleactivity.fragment
 
 import android.content.Context
 import android.os.Bundle

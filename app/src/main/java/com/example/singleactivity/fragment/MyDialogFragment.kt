@@ -1,3 +1,5 @@
+package com.example.singleactivity.fragment
+
 import android.app.Dialog
 import android.content.Context
 import android.content.DialogInterface
@@ -9,13 +11,11 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.DialogFragment
-import com.example.singleactivity.Fragment2
-import com.example.singleactivity.Fragment3
 import com.example.singleactivity.R
 import com.example.singleactivity.ktx.show
 
 class MyDialogFragment: DialogFragment() {
-    private val TAG = "MyDialogFragment a85l"
+    private val TAG = "com.example.singleactivity.fragment.MyDialogFragment a85l"
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         Log.d(TAG, "onCreateView: ")

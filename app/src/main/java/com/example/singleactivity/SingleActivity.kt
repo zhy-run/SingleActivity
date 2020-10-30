@@ -5,6 +5,10 @@ import android.util.Log
 import androidx.annotation.IdRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import com.example.singleactivity.fragment.Fragment1
+import com.example.singleactivity.fragment.Fragment2
+import com.example.singleactivity.fragment.Fragment3
+import com.example.singleactivity.fragment.Fragment4
 import com.example.singleactivity.ktx.initFragmentStack
 import com.example.singleactivity.tab.NavTabContainerView
 import kotlinx.android.synthetic.main.activity_main.*
@@ -22,7 +26,8 @@ class SingleActivity: AppCompatActivity(), NavTabContainerView.OnNavTabContainer
 
     internal var stackPosition:Int = 0
 
-    private val initFragmentList = listOf<Class<out Fragment>>(Fragment1::class.java,Fragment2::class.java,Fragment3::class.java,Fragment4::class.java)
+    private val initFragmentList = listOf<Class<out Fragment>>(Fragment1::class.java,
+        Fragment2::class.java, Fragment3::class.java, Fragment4::class.java)
 
     companion object{
         private const val TAG = "SingleActivity a85l"
